@@ -4,6 +4,12 @@ import sys
 import subprocess
 
 WIN = sys.platform.startswith('win')
+'''
+该函数用于判断当前操作系统是否为Windows系统。
+使用sys.platform.startswith('win')来检查系统平台是否以'win'开头，
+如果是则返回True，否则返回False。这个函数通常用于编写跨平台的Python代码，
+根据系统类型执行不同的操作或导入不同的模块。
+'''
 
 
 def main():
