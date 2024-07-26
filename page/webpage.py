@@ -51,7 +51,6 @@ class WebPage(object):
             # 如果页面加载超时，抛出异常并提示用户
             raise TimeoutException("打开%s超时请检查网络或网址服务器" % url)
 
-
     @staticmethod
     def element_locator(func: Callable, locator: tuple):
         """
