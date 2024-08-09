@@ -5,7 +5,7 @@ selenium基类
 本文件存放了selenium基类的封装方法
 """
 from typing import Union, Callable
-from selenium.webdriver import Chrome, Firefox, Edge, Ie, Opera, Safari, Remote
+from selenium.webdriver import Chrome, Firefox, Edge, Ie, Safari, Remote
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
@@ -19,7 +19,7 @@ class WebPage(object):
     """selenium基类"""
 
     def __init__(self, driver):
-        self.driver: Union[Chrome, Firefox, Edge, Ie, Opera, Safari, Remote] = driver
+        self.driver: Union[Chrome, Firefox, Edge, Ie, Safari, Remote] = driver
         self.timeout: int = 20
         self.wait: WebDriverWait = WebDriverWait(self.driver, self.timeout)
 
