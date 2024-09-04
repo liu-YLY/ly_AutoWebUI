@@ -15,7 +15,7 @@ from utils.times import sleep
 from utils.logger import logger
 
 
-class WebPage(object):
+class WebPage:
     """selenium基类"""
 
     def __init__(self, driver):
@@ -31,10 +31,10 @@ class WebPage(object):
         如果页面加载超时，将抛出TimeoutException异常。
 
         参数:
-        url (str): 需要打开的URL地址。
+            url (str): 需要打开的URL地址。
 
         抛出:
-        TimeoutException: 如果页面在指定的超时时间内未能加载完成。
+            TimeoutException: 如果页面在指定的超时时间内未能加载完成。
         """
         # 最大化浏览器窗口以获得更好的用户体验
         self.driver.maximize_window()
@@ -46,10 +46,10 @@ class WebPage(object):
             # 设置隐式等待时间，即在查找元素时等待页面加载的时间
             self.driver.implicitly_wait(10)
             # 记录日志，表示页面打开成功
-            logger.info("打开网页：%s" % url)
+            logger.info(f"打开网页：{url}")
         except TimeoutException:
             # 如果页面加载超时，抛出异常并提示用户
-            raise TimeoutException("打开%s超时请检查网络或网址服务器" % url)
+            raise TimeoutException(f"打开{url}超时请检查网络或网址服务器")
 
     @staticmethod
     def element_locator(func: Callable, locator: tuple):
@@ -80,7 +80,7 @@ class WebPage(object):
     def elements_num(self, locator: tuple) -> int:
         """获取相同元素的个数"""
         number = len(self.find_elements(locator))
-        logger.info("相同元素：{}".format((locator, number)))
+        logger.info(f"相同元素：{(locator, number)}")
         return number
 
     def input_text(self, locator: tuple, txt: str):
@@ -89,13 +89,13 @@ class WebPage(object):
         ele = self.find_element(locator)
         ele.clear()
         ele.send_keys(txt)
-        logger.info("输入文本：{}".format(txt))
+        logger.info(f"输入文本：{txt}")
 
     def click(self, locator: tuple):
         """点击"""
         self.find_element(locator).click()
         sleep()
-        logger.info("点击元素：{}".format(locator))
+        logger.info(f"点击元素：{locator}")
 
     def is_visible(self, locator: tuple) -> bool:
         """元素是否可见"""
@@ -111,7 +111,7 @@ class WebPage(object):
     def element_text(self, locator: tuple):
         """获取当前的text"""
         _text = self.find_element(locator).text
-        logger.info("获取文本：{}".format(_text))
+        logger.info(f"获取文本：{_text}")
         return _text
 
     @property

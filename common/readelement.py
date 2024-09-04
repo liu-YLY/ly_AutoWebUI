@@ -5,7 +5,7 @@ import yaml
 from config.conf import settings
 
 
-class Element(object):
+class Element:
     """获取元素"""
 
     def __init__(self, name: str):
@@ -18,12 +18,12 @@ class Element(object):
         :param name: 元素的名称，用于构造yaml文件的名称。
         """
         # 根据名称生成yaml文件名
-        self.file_name = '%s.yaml' % name
+        self.file_name = f'{name}.yaml'
         # 构建元素文件的完整路径
         self.element_path = os.path.join(settings.ELEMENT_PATH, self.file_name)
         # 检查元素文件是否存在，如果不存在则抛出异常
         if not os.path.exists(self.element_path):
-            raise FileNotFoundError("%s 文件不存在！" % self.element_path)
+            raise FileNotFoundError(f"{self.element_path} 文件不存在！")
         # 打开元素文件，并使用yaml安全加载器加载文件内容到self.data
         with open(self.element_path, encoding='utf-8') as f:
             self.data = yaml.safe_load(f)
@@ -49,9 +49,9 @@ class Element(object):
             raise KeyError("关键字不正确")
         data: str = self.data.get(item)
         if not data:
-            raise ArithmeticError("{}中不存在关键字：{}".format(self.file_name, item))
+            raise ArithmeticError(f"{self.file_name}中不存在关键字：{item}")
         if '==' not in data:
-            raise ValueError("{}中{}关键字数据不正确".format(self.file_name, item))
+            raise ValueError(f"{self.file_name}中{item}关键字数据不正确")
         name, value = data.split('==')
         return name, value
 
