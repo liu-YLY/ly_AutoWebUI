@@ -6,7 +6,7 @@ from config.conf import settings
 HOST = 'HOST'
 
 
-class ReadConfig(object):
+class ReadConfig:
     """配置文件"""
 
     def __init__(self):

@@ -84,7 +84,17 @@ class WebPage:
         return number
 
     def input_text(self, locator: tuple, txt: str):
-        """输入(输入前先清空)"""
+        """
+        输入文本到指定元素。（输入前先清空）
+
+        参数:
+            locator (tuple): 元素定位信息的元组，包含定位方式名称和定位值。
+            txt (str): 要输入的文本。
+
+        日志:
+            记录输入的文本信息。
+
+        """
         sleep(0.5)
         ele = self.find_element(locator)
         ele.clear()
@@ -100,12 +110,14 @@ class WebPage:
     def is_visible(self, locator: tuple) -> bool:
         """元素是否可见"""
         try:
-            ele = WebPage.element_locator(lambda *args: self.visible_obj.until(
-                EC.visibility_of_element_located(args), locator))
+            ele = WebPage.element_locator(lambda *args: self.wait.until(
+                EC.visibility_of_element_located(args)), locator)
             if ele:
                 return True
             return False
         except TimeoutException:
+            # 异常处理，确保测试脚本不会因为元素未找到而中断
+            print(f"Element not found or other error occurred: {TimeoutException}")
             return False
 
     def element_text(self, locator: tuple):

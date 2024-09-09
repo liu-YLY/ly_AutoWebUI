@@ -9,7 +9,7 @@ from utils.times import running_time
 @running_time
 def inspect_element():
     """检查所有的元素是否正确
-    只能做一个简单的检查
+       只能做一个简单的检查
     """
     for files in os.listdir(settings.ELEMENT_PATH):
         _path = os.path.join(settings.ELEMENT_PATH, files)

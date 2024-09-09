@@ -15,7 +15,7 @@ def main():
     with open(USER_PTH, 'w') as f:
         f.write(BASE_DIR)
         print("生成文件成功！")
-        print("文件位置：%s" % USER_PTH)
+        print(f"文件位置：{USER_PTH}")
     with open(USER_PTH) as f:
         print("文件内容：", f.read())
 
