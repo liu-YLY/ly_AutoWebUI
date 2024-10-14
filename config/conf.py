@@ -5,7 +5,9 @@ from selenium.webdriver.common.by import By
 from utils.times import dt_strftime
 
 
-class ConfigManager(object):
+class ConfigManager:
+    """配置管理类"""
+
     # 项目目录
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -46,7 +48,7 @@ class ConfigManager(object):
         if not os.path.exists(screenshot_dir):
             os.makedirs(screenshot_dir)
         now_time = dt_strftime("%Y%m%d%H%M%S")
-        screen_file = os.path.join(screenshot_dir, "{}.png".format(now_time))
+        screen_file = os.path.join(screenshot_dir, f"{now_time}.png")
         return now_time, screen_file
 
     @property
@@ -55,14 +57,14 @@ class ConfigManager(object):
         log_dir = os.path.join(self.BASE_DIR, 'logs')
         if not os.path.exists(log_dir):
             os.makedirs(log_dir)
-        return os.path.join(log_dir, '{}.log'.format(dt_strftime()))
+        return os.path.join(log_dir, f'{dt_strftime()}.log')
 
     @property
     def ini_file(self):
         """配置文件"""
         ini_file = os.path.join(self.BASE_DIR, 'config', 'config.ini')
         if not os.path.exists(ini_file):
-            raise FileNotFoundError("配置文件%s不存在！" % ini_file)
+            raise FileNotFoundError(f"配置文件{ini_file}不存在！")
         return ini_file
 
 
