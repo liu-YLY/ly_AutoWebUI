@@ -100,8 +100,8 @@ class WebPage(object):
     def is_visible(self, locator: tuple) -> bool:
         """元素是否可见"""
         try:
-            ele = WebPage.element_locator(lambda *args: self.visible_obj.until(
-                EC.visibility_of_element_located(args), locator))
+            ele = WebPage.element_locator(lambda *args: self.wait.until(
+                EC.visibility_of_element_located(args)), locator)
             if ele:
                 return True
             return False
