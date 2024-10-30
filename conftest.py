@@ -15,13 +15,11 @@ from utils.send_mail import send_report
 
 driver = None
 
-
 # 定义一个测试夹具，用于会话级别的Selenium WebDriver管理
 @pytest.fixture(scope='session', autouse=True)
 def drivers(request):
     """
     初始化并提供一个会话级别的Chrome驱动实例。
-
     该fixture自动激活，用于所有测试会话中的Chrome浏览器实例初始化和销毁。
     """
 

@@ -11,6 +11,7 @@ class ReadConfig:
 
     def __init__(self):
         self.config = configparser.RawConfigParser()  # 当有%的符号时请使用Raw读取
+        # 不会对配置文件中的值进行任何转换，即它不会解析百分比符号 % 或变量替换，这使得它在处理原始配置数据时非常有用。
         self.config.read(settings.ini_file, encoding='utf-8')
 
     def _get(self, section, option):
